@@ -51,9 +51,12 @@ using namespace std;
 			//if its less than or equal to zero that means the process should have been terminated
 			if (remaining_time <= 0) {
 
+				//calculates completion time and makes sure it doesn't got over
+				completion_time = current_time + max(0, time_slice + remaining_time);
 			
 				updateState("Terminated");			
 				updateTurnaround_Time(); //update turnaround time since process is completed
+				cout << "Process " << pid << " completed its execution in " << completion_time << endl;
 			}
 
 			//if its above zero then the process is still running
@@ -72,19 +75,6 @@ using namespace std;
 	void Process::updateTurnaround_Time() {
 		
 		turnaround_time = completion_time - arrival_time;
-	}
-
-	void Process::setCompletionTime(int time) {
-		this->completion_time = time;
-		updateTurnaround_Time();  // Turnaround time = Completion Time - Arrival Time
-	}
-
-	void Process::setTurnaroundTime(int turnaroundTime) {
-		this->turnaround_time = turnaroundTime;
-	}
-
-	void Process::setWaitingTime(int waitingTime) {
-		this->waiting_time = waitingTime;
 	}
 
 	//getters

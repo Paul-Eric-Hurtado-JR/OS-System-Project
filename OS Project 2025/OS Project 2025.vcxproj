@@ -131,13 +131,11 @@
     <ClCompile Include="bootUp.cpp" />
     <ClCompile Include="OS Project 2025.cpp" />
     <ClCompile Include="Process.cpp" />
-    <ClCompile Include="Scheduler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="auth.h" />
     <ClInclude Include="bootUp.h" />
     <ClInclude Include="Process.h" />
-    <ClInclude Include="Scheduler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

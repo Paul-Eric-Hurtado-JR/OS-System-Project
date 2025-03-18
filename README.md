@@ -1,0 +1,9 @@
+Project Name: OS System Project
+
+Group Member: Paul Hurtado
+
+Description: The purpose of this project is to replicate what an operating system does in a computer. There will be a bios setupt and allow for the user to select whether they wanted to enter windows 11 or enter recovery mode. This was all coded in c++.
+
+Instructions: To use this program you need to download the main files and open it in whatever coding software you prefer. Once it is opened clicking for it to compile will start the process of executing the program. The first thing that will happen is the bios will setup. When the bios is establishe the user is going to be asked questions of which OS they would like to use. The OS that is selected will then load the kernel and ask the user to login. If the user enters a good username and password a success message will appear. If the entered username and password isn't good they will get an error message and have to attempt entering the username and password agiang. When the user is done they will sign out and the program will be ended.
+
+Process Implementation: I added a process cpp file and header file. These files contain a class called process it is used to replicate the way process act in a OS. 12 attributes were created all of them being private. The attriburtes were used in the methods and were used to help illustrate how a OS works. A constructor was used ot set all the attributes to default values. I then created 4 other methods 3 of which were to update attributes those being the state remaining time and turnaround time. The other method was for execution in this method it went through what it was like for a process to execute. The last methods I implemnted were getters these were to be able to get any of the attributes values. That is all that was implemented in the process class.

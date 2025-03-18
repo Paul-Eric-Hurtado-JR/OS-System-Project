@@ -30,9 +30,6 @@ public:
     void execution(int time_slice, int current_time);
     void updateRemaining_time(int time);
     void updateTurnaround_Time();
-    void setCompletionTime(int time);
-    void setTurnaroundTime(int turnaroundTime);
-    void setWaitingTime(int waitingTime);
 
     // Getters
     int getPID() const;
