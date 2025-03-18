@@ -6,58 +6,66 @@
 #include "bootUp.h"
 #include "auth.h"
 #include "Process.h"
+#include "Scheduler.h"
 using namespace std;
 
 int main()
 {
-    Process P1(1, 0, 10, 0, 256,{ "Disk Read","Network IO" });
+    // Create Process objects with (PID, Arrival Time, Burst Time, Completion Time, Memory, I/O Operations)
+    Process P1(1, 0, 10, 0, 256, { "Disk Read","Network IO" });
     Process P2(2, 3, 12, 0, 256);
-    Process P3(3, 6, 15 ,0, 512,{ "load image.png","Save image.jpg" });
+    Process P3(3, 6, 15, 0, 512, { "load image.png","Save image.jpg" });
     Process P4(4, 9, 18, 0, 512);
     Process P5(5, 12, 21, 0, 128, { "Load video.mp4" });
 
-    biosStart();                //starts the process of loading the bios
-    int osChoice = bootLoader();    //calls the the bootloader function to get user input for which os they wanted
+    biosStart();  // Starts BIOS loading process
+    int osChoice = bootLoader();  // Get user input for OS selection
 
-    if (osChoice == 1) {    //if oschoice equals 1 then windows is loaded
+    if (osChoice == 1) {
         windowsLoading();
-        authenticateUser();  
-        // Create a vector to hold all processes
-        vector<Process*> processes = { &P1, &P2, &P3, &P4, &P5 };
+        authenticateUser();
 
-        int currentTime = 0;
-        const int timeSlice = 3; // Time slice for each process in seconds
-        bool allFinished = false;
+        // Store processes in a vector
+        vector<Process> processes = { P1, P2, P3, P4, P5 };
 
-        // Loop until all processes are finished
-        while (!allFinished) {
-            allFinished = true; // Assume all processes are finished
+        // Create the Scheduler object
+        Scheduler scheduler(processes);
 
-            for (auto& process : processes) {
-                if (process->getRemainingTime() > 0) {
-                    allFinished = false; // At least one process is still running
+        // Choose a scheduling algorithm
+        int schedulingChoice;
+        cout << "Select Scheduling Algorithm: \n";
+        cout << "1. First-Come, First-Served (FCFS)\n";
+        cout << "2. Shortest Job First (Non-Preemptive)\n";
+        cout << "3. Shortest Job First (Preemptive)\n";
+        cout << "Enter choice: ";
+        cin >> schedulingChoice;
 
-                    // Execute the process for the time slice
-                    process->execution(timeSlice, currentTime);
-                    currentTime += timeSlice; // Increment current time
-                }
-            }
-
-            // Optional: Print the current time after each full round
-            cout << "Current time after round: " << currentTime << endl;
-
-            // Add a sleep to simulate time passing (optional)
-            this_thread::sleep_for(chrono::seconds(timeSlice));
+        switch (schedulingChoice) {
+        case 1:
+            cout << "Running FCFS Scheduling...\n";
+            scheduler.scheduleFCFS();
+            break;
+        case 2:
+            cout << "Running SJF Non-Preemptive Scheduling...\n";
+            scheduler.scheduleSJFNonPreemptive();
+            break;
+        case 3:
+            cout << "Running SJF Preemptive Scheduling...\n";
+            scheduler.scheduleSJFPreemptive();
+            break;
+        default:
+            cout << "Invalid choice. Defaulting to FCFS.\n";
+            scheduler.scheduleFCFS();
+            break;
         }
 
-        cout << "All processes have completed." << endl;
+        // Display the scheduling results
+        scheduler.displayResults();
+
     }
-    else {                  //else then recovery mode is entered
+    else {
         cout << "Entering Recovery Mode..." << endl;
     }
 
-
-
     return 0;
 }
-
