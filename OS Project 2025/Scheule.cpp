@@ -1,4 +1,4 @@
-﻿#include "Scheduler.h"
+#include "schedule.h"
 #include <iostream>
 #include <algorithm>
 #include <iomanip>
@@ -21,7 +21,7 @@ void Scheduler::scheduleFCFS() {
         // Run the process for its full burst time
         p.execution(p.getBurstTime(), current_time);
 
-        // 🔹 Set completion time (Scheduler's job)
+        // Set completion time (Scheduler's job)
         current_time += p.getBurstTime();
         p.setCompletionTime(current_time);
 
@@ -119,8 +119,8 @@ void Scheduler::displayResults() {
         << setw(10) << "Waiting"
         << endl;
 
-        int total_turnaround = 0;
-        int total_waiting = 0; 
+    int total_turnaround = 0;
+    int total_waiting = 0;
     // Print each process' data
     for (auto& p : processes) {
         cout << setw(10) << p.getPID()
@@ -129,8 +129,8 @@ void Scheduler::displayResults() {
             << setw(15) << p.getCompletionTime()
             << setw(15) << p.getTurnaroundTime()
             << setw(10) << p.getWaitingTime()
-            << endl;       
-       
+            << endl;
+
         total_turnaround += p.getTurnaroundTime();
         total_waiting += p.getWaitingTime();
     }

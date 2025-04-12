@@ -24,12 +24,15 @@ private:
     bool has_started;
 
 public:
-    Process(int id, int arrival, int burst, int pri = 0, int memory=0, vector<string> io_ops = {});
+    Process(int id, int arrival, int burst, int pri = 0, int memory = 0, vector<string> io_ops = {});
 
     void updateState(string nState);
     void execution(int time_slice, int current_time);
     void updateRemaining_time(int time);
     void updateTurnaround_Time();
+    void setCompletionTime(int time);
+    void setTurnaroundTime(int turnaroundTime);
+    void setWaitingTime(int waitingTime);
 
     // Getters
     int getPID() const;
