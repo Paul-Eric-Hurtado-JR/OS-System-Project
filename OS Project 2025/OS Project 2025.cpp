@@ -7,6 +7,7 @@
 #include "auth.h"
 #include "Process.h"
 #include "schedule.h"
+#include "Virtualmemoryr.h"
 using namespace std;
 
 int main()

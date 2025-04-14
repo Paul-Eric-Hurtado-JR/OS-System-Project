@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include "Process.h"
-
+#include "Virtualmemoryr.h"
 using namespace std;
 //declaration of process class
 
@@ -21,6 +21,7 @@ Process::Process(int id, int arrival, int burst, int pri, int memory, vector<str
 	io_operations = io_ops;
 	completion_time = 0;
 	has_started = false;
+	pageTable.resize(virtualPages);
 }
 //updates the state of the process
 void Process::updateState(string nState) {
@@ -85,6 +86,10 @@ void Process::setTurnaroundTime(int turnaroundTime) {
 
 void Process::setWaitingTime(int waitingTime) {
 	this->waiting_time = waitingTime;
+}
+
+int Process::getPhysicalAddress(int virtualAddress, std::vector<Page>& physicalMemory) {
+	return VirtualMemory::virtualToPhysical(virtualAddress, pageTable, physicalMemory, this->pid);
 }
 
 //getters

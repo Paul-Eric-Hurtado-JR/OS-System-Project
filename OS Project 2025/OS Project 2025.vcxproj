@@ -132,12 +132,15 @@
     <ClCompile Include="OS Project 2025.cpp" />
     <ClCompile Include="Process.cpp" />
     <ClCompile Include="Scheule.cpp" />
+    <ClCompile Include="Virtualmemory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="auth.h" />
     <ClInclude Include="bootUp.h" />
+    <ClInclude Include="memoryStructs.h" />
     <ClInclude Include="Process.h" />
     <ClInclude Include="schedule.h" />
+    <ClInclude Include="Virtualmemoryr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

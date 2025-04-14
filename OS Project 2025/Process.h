@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "memoryStructs.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ private:
     vector<string> io_operations;
     int completion_time;
     bool has_started;
+    vector<pageEntry> pageTable;
 
 public:
     Process(int id, int arrival, int burst, int pri = 0, int memory = 0, vector<string> io_ops = {});
@@ -33,6 +35,7 @@ public:
     void setCompletionTime(int time);
     void setTurnaroundTime(int turnaroundTime);
     void setWaitingTime(int waitingTime);
+    int getPhysicalAddress(int virtualAddress, vector<Page>& physicalMemory);
 
     // Getters
     int getPID() const;

@@ -30,6 +30,9 @@
     <ClCompile Include="Scheule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Virtualmemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="auth.h">
@@ -42,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="schedule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Virtualmemoryr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="memoryStructs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
